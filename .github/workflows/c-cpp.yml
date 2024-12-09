@@ -23,12 +23,12 @@ jobs:
       run: |
         if [ "${{ runner.os }}" == "Linux" ]; then
           sudo apt update
-          sudo apt install -y g++  # Install g++ for Linux
+          sudo apt install -y clang++
         elif [ "${{ runner.os }}" == "Windows" ]; then
           choco install -y mingw
         elif [ "${{ runner.os }}" == "Darwin" ]; then
           xcode-select --install || echo "xcode-select is already set up"
-          brew install gcc || echo "Homebrew dependencies are already set up"
+          brew install clang++ || echo "Homebrew dependencies are already set up"
           # Set the correct architecture for compatibility
           export CXXFLAGS="-arch x86_64 -arch arm64"
         fi
