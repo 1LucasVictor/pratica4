@@ -31,6 +31,8 @@ jobs:
           brew install gcc || echo "Homebrew dependencies are already set up"
           # Set the correct architecture for compatibility
           export CXXFLAGS="-arch x86_64 -arch arm64"
+        fi
+
     - name: Set environment flags for macOS
       if: runner.os == 'Darwin'
       run: |
