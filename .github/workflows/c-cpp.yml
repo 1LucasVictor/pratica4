@@ -40,7 +40,6 @@ jobs:
         export CXXFLAGS="-arch x86_64 -arch arm64"
 
     - name: Build the project
-      shell: bash
       run: make
 
     - name: Set execute permissions on test binary
