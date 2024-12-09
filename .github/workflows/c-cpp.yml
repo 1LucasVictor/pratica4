@@ -27,11 +27,10 @@ jobs:
         elif [ "${{ runner.os }}" == "Windows" ]; then
           choco install -y mingw
         elif [ "${{ runner.os }}" == "Darwin" ]; then
-          # Set up clang or other build tools explicitly for macOS
           xcode-select --install || echo "xcode-select is already set up"
           brew install gcc || echo "Homebrew dependencies are already set up"
-        fi
-
+          # Force architecture for compatibility on macOS
+          export CXXFLAGS="-arch x86_64"
     - name: Build the project
       run: make
 
