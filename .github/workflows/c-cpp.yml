@@ -29,8 +29,14 @@ jobs:
         elif [ "${{ runner.os }}" == "Darwin" ]; then
           xcode-select --install || echo "xcode-select is already set up"
           brew install gcc || echo "Homebrew dependencies are already set up"
-          # Force architecture for compatibility on macOS
-          export CXXFLAGS="-arch x86_64"
+          # Set the correct architecture for compatibility
+          export CXXFLAGS="-arch x86_64 -arch arm64"
+    - name: Set environment flags for macOS
+      if: runner.os == 'Darwin'
+      run: |
+        echo "Setting environment flags for macOS compatibility"
+        export CXXFLAGS="-arch x86_64 -arch arm64"
+
     - name: Build the project
       run: make
 
