@@ -42,10 +42,6 @@ jobs:
     - name: Build the project
       run: make
 
-    - name: Set execute permissions on test binary
-      if: runner.os == 'Linux' || runner.os == 'Darwin'
-      run: chmod +x ./bin/calculadora_test
-
     - name: Run tests
       run: make test
 
