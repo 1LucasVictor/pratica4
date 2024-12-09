@@ -21,6 +21,7 @@ jobs:
 
     - name: Set up build dependencies
       run: |
+        bash -c '
         if [ "${{ runner.os }}" == "Linux" ]; then
           sudo apt update
           sudo apt install -y clang++
@@ -32,6 +33,7 @@ jobs:
           # Set the correct architecture for compatibility
           export CXXFLAGS="-arch x86_64 -arch arm64"
         fi
+        '
 
     - name: Set environment flags for macOS
       if: runner.os == 'Darwin'
