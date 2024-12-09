@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "stdexcept": "cpp",
+        "limits": "cpp",
+        "random": "cpp",
+        "vector": "cpp"
+    }
+}
