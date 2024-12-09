@@ -25,7 +25,7 @@ jobs:
         if [ "${{ runner.os }}" == "Linux" ]; then
           sudo apt update
         elif [ "${{ runner.os }}" == "Windows" ]; then
-          choco install -y mingw
+          choco install -y clang++
         elif [ "${{ runner.os }}" == "Darwin" ]; then
           xcode-select --install || echo "xcode-select is already set up"
           brew install clang++ || echo "Homebrew dependencies are already set up"
