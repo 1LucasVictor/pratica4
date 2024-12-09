@@ -13,7 +13,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
     - name: Checkout repository
@@ -27,14 +27,16 @@ jobs:
         elif [ "${{ runner.os }}" == "Windows" ]; then
           choco install -y mingw
         elif [ "${{ runner.os }}" == "Darwin" ]; then
-          # Set up clang explicitly for macOS
+          # Set up clang or other build tools explicitly for macOS
           xcode-select --install || echo "xcode-select is already set up"
+          brew install gcc || echo "Homebrew dependencies are already set up"
         fi
 
     - name: Build the project
       run: make
 
     - name: Set execute permissions on test binary
+      if: runner.os == 'Linux' || runner.os == 'Darwin'
       run: chmod +x ./bin/calculadora_test
 
     - name: Run tests
